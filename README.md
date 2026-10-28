@@ -32,8 +32,8 @@ For R1 I got rid of the Padauk MCU without increasing the chip count!
 # Build instructions:
 
 1) Send gerber files from /hardware to your favorite board house (see "Getting a PCB" below) (or get a board from [my store](https://www.imania.dk/index.php?currency=EUR&cPath=204&sort=5a&language=en)) 
-2) Build the firmware using assemble.sh (macOS/Linux) - this will also try to burn the main ROM using Minipro. Dependencies: [CC65] (https://github.com/cc65/cc65) and a way to burn the ROM's.
-3) Source the IC's - the spirit of this project is to contribute as little as possible to the global IC shortage and get used chips locally or from Ebay/AliExpress/etc.
+2) Build the firmware using `./assemble.sh` (macOS/Linux). Dependencies: [CC65] (https://github.com/cc65/cc65). It only builds; use `./assemble.sh --program-sst39sf010` to flash with Firestarter, or use your own programmer.
+3) Source the IC's using [the reconciled BOM](hardware/BOM-6502-reconciled.csv). The historical JLC BOM/CPL are retained as archived production exports, but they do not match the current schematic and must not be used to order or place parts.
 4) Burn the ROMs. I use a TL866II Plus variant for the actual ROMs.
 5) Solder away. If you can solder 0805 components(poorly), you should be fine. Some optional components (the microUSB connector, the 3v3 regulator, and the RF-module) require a bit more skill.  
 6) For the PS/2-keyboard I use the 6522's Shift Register, PB6, and a 74xx74 flip flop.  See my R1 Hardware overview at 7:46: https://youtu.be/w5cA64xof2I?t=466 This is now included on the board - instead of a PS/2 connector which can be harder to source I went with a USB-A-connector. Keyboard plugs straight into the board. 
@@ -75,4 +75,8 @@ You can use these affiliate links to get a board for $2 and also get $54 worth o
 
 And in case you also want to order a 3D-printed case you can use this link. 
 How to Get a $7 3D Printing Coupon: [https://3d.jlcpcb.com/?from=Anders3DP](https://jlc3dp.com/?from=Anders_N)
+
+## Current build data
+
+The KiCad schematics and PCB are the source of truth. Use [the reconciled BOM](hardware/BOM-6502-reconciled.csv) and [procurement notes](hardware/PROCUREMENT.md) for a new build. The original JLC export is preserved under `hardware/jlcpcb/production_files/` for provenance only.
 

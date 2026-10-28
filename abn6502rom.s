@@ -4,7 +4,7 @@
 
 .export I2CADDR, I2CREG, i2c_read, i2c_test, main, kb_rptr, PRIMM, printk, printbyte, wkey, PORTB, TIMEOUT,exitirq, printa, newline, setpulses, scrp, scwp, simpledelay, selectbaudrate, MILLISH,resetkb, clrscn,checkkeyboard, kb_buffer, MONRDKEY,CRSRPNT, t2irqreg1, MILLIS
 
-BASIC := 1 ; 1 if BASIC  is enabled
+;BASIC := 1 ; Set to 1 only when a sibling msbasic checkout is present.
 ;DEBUG = 1
 PORTB = $6000 ; PB0: SCK/SCL, PB1: RF CS, PB2: RF CE, PB3: SDA, PB4,PB5: MISO ,PB6: PS/2 Clock In, PB7: MOSI/T1 Out (Tape drive output)
 PORTA = $6001
