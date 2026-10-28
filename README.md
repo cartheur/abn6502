@@ -42,13 +42,13 @@ For R1 I got rid of the Padauk MCU without increasing the chip count!
 Optional:
 Setup SSH keys with a Raspberry Pi, connect an nRF24L01+ compatible module to it and compile the wireless bootloader code in /software_linux
 
-Also optional:
-Microsoft BASIC can be enabled by cloning the msbasic Github repo into the same folder you cloned this repo.
+Microsoft BASIC is enabled in the default build. The build expects the checkout at `../../dotpoly/msbasic` (relative to this repository) or at the directory named by `MSBASIC_ROOT`.
 
-> git clone https://github.com/mist64/msbasic.git
+For example:
 
-Then uncomment ;BASIC := 1 (Remove the ";") and run assemble.sh - this will let you run BASIC by pressing F4.
-To change settings for BASIC, values can be changed in defines_abn6502.s
+> MSBASIC_ROOT=/path/to/msbasic ./assemble.sh
+
+To build without BASIC, comment out `BASIC := 1` in `abn6502rom.s`. To change BASIC settings, edit `defines_abn6502.s`.
 
 Also, please note that the current code assumes VRAM starts at $0800 rather than the default $2000 in the schematic - resistors will have pads for configuring in the next build, but for now it requires jumpers.
 

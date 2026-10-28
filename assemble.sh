@@ -3,7 +3,16 @@
 set -euo pipefail
 
 mkdir -p build
-ca65 -vvv --cpu 6502 -l build/listing.txt -o build/abn6502rom.o abn6502rom.s
+script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+msbasic_root="${MSBASIC_ROOT:-$script_dir/../../dotpoly/msbasic}"
+
+if [[ ! -f "$msbasic_root/msbasic.s" ]]; then
+  echo "Microsoft BASIC is enabled but msbasic.s was not found at: $msbasic_root" >&2
+  echo "Set MSBASIC_ROOT to the msbasic checkout, or disable BASIC in abn6502rom.s." >&2
+  exit 1
+fi
+
+ca65 -vvv --cpu 6502 -I "$(dirname -- "$msbasic_root")" -l build/listing.txt -o build/abn6502rom.o abn6502rom.s
 ca65 crom.s -o build/crom.o
 ca65 userland.s --cpu 65c02 -l build/userlisting.txt -o build/userland.o
 ld65 -o build/abn6502rom.bin -C memmap.cfg build/abn6502rom.o build/crom.o build/userland.o
